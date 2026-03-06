@@ -1,34 +1,90 @@
 # AI Brain Tumor Detection
 
-This project uses Deep Learning to detect brain tumors from MRI images.
+This project uses Deep Learning to detect and classify brain tumors from MRI images.
 
-## Features
+The system is built using PyTorch and deployed as a web application using Streamlit.
 
-- MRI tumor detection
-- Possible tumor type classification
-- Prediction confidence visualization
-- Training accuracy and loss graphs
-- Confusion matrix evaluation
-- Streamlit web application
+---
+
+## Problem Statement
+
+Brain tumors are abnormal growths of cells inside the brain that can disrupt normal brain functions. Early detection is critical for treatment planning.
+
+Manual MRI analysis is time-consuming and depends heavily on radiologists. This project uses AI to assist doctors by automatically detecting tumors from MRI scans.
+
+---
 
 ## Dataset
 
 Brain MRI Images for Brain Tumor Detection (Kaggle)
 
-## Technologies Used
+Classes:
+- Tumor
+- No Tumor
 
-Python  
-PyTorch  
-Streamlit  
-OpenCV  
-Scikit-learn  
+---
 
-## Run the Project
+## Model Architecture
 
-Install dependencies:
+Convolutional Neural Network (CNN)
+
+Pipeline:
+
+MRI Image  
+↓  
+Image Preprocessing  
+↓  
+CNN Feature Extraction  
+↓  
+Fully Connected Layer  
+↓  
+Classification
+
+---
+
+## Results
+
+Training Accuracy: ~XX%
+
+Evaluation Metrics:
+
+- Accuracy
+- Loss
+- Confusion Matrix
+
+Graphs are stored in the results folder.
+
+---
+
+## Deployment
+
+The model is deployed using Streamlit.
+
+Run locally:
 
 pip install -r requirements.txt
 
-Run the web app:
-
 streamlit run app.py
+
+---
+
+## Project Structure
+
+AI-Brain-Tumor-Detection
+│
+├── train.py
+├── app.py
+├── model/
+├── results/
+├── dataset/
+├── requirements.txt
+└── README.md
+
+---
+
+## Future Improvements
+
+- Multi-class tumor classification
+- Tumor localization
+- Cloud deployment
+- Explainable AI (Grad-CAM)
