@@ -7,6 +7,16 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 import random
+import gdown
+
+MODEL_PATH = "model/model.pth"
+
+if not os.path.exists(MODEL_PATH):
+    os.makedirs("model", exist_ok=True)
+
+    url = "PASTE_MODEL_DOWNLOAD_LINK_HERE"
+
+    gdown.download(url, MODEL_PATH, quiet=False)
 
 # -------------------------------
 # Page Config
@@ -247,4 +257,5 @@ imaging, and web deployment** to create an accessible AI diagnostic tool.
 # -------------------------------
 
 st.markdown("---")
+
 st.write("AI Healthcare Hackathon Demo – Brain Tumor Detection System")
