@@ -16,7 +16,14 @@ if not os.path.exists(MODEL_PATH):
 
     url = "PASTE_MODEL_DOWNLOAD_LINK_HERE"
 
-    gdown.download(url, MODEL_PATH, quiet=False)
+    # Only attempt download if URL is not a placeholder
+    if url != "PASTE_MODEL_DOWNLOAD_LINK_HERE" and url.startswith("http"):
+        try:
+            gdown.download(url, MODEL_PATH, quiet=False)
+        except Exception as e:
+            st.warning(f"Could not download model: {e}. Please ensure model file exists.")
+    else:
+        st.warning("⚠️ Model download URL not configured. Please add a valid Google Drive link.")
 
 # -------------------------------
 # Page Config
