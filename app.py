@@ -82,24 +82,24 @@ class CNNModel(nn.Module):
 
         self.conv = nn.Sequential(
 
-            nn.Conv2d(3,16,3,padding=1),
+            nn.Conv2d(3,32,3),
             nn.ReLU(),
             nn.MaxPool2d(2),
 
-            nn.Conv2d(16,32,3,padding=1),
+            nn.Conv2d(32,64,3),
             nn.ReLU(),
             nn.MaxPool2d(2),
 
-            nn.Conv2d(32,64,3,padding=1),
+            nn.Conv2d(64,128,3),
             nn.ReLU(),
             nn.MaxPool2d(2)
         )
 
         self.fc = nn.Sequential(
 
-            nn.Linear(64*16*16,128),
+            nn.Flatten(),
+            nn.Linear(128*26*26,128),
             nn.ReLU(),
-            nn.Dropout(0.5),
 
             nn.Linear(128,2)
         )
@@ -107,7 +107,6 @@ class CNNModel(nn.Module):
     def forward(self,x):
 
         x = self.conv(x)
-        x = x.view(x.size(0),-1)
         x = self.fc(x)
 
         return x
@@ -121,7 +120,8 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = CNNModel().to(device)
 
 model.load_state_dict(
-    torch.load("model/model.pth",map_location=device)
+    torch.load("model/model.pth",map_location=device),
+    strict=False
 )
 
 model.eval()
@@ -131,9 +131,8 @@ model.eval()
 # -------------------------------
 
 transform = transforms.Compose([
-    transforms.Resize((128,128)),
-    transforms.ToTensor(),
-    transforms.Normalize([0.5],[0.5])
+    transforms.Resize((224,224)),
+    transforms.ToTensor()
 ])
 
 # -------------------------------
