@@ -2,6 +2,7 @@ torch
 torchvision
 streamlit
 matplotlib
-scikit-learn
 seaborn
+scikit-learn
 pillow
+gdown
